@@ -3,7 +3,6 @@ import adapter from '@sveltejs/adapter-static';
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
 	compilerOptions: {
-		// keep your runes config exactly as-is
 		runes: ({ filename }) =>
 			filename.split(/[/\\]/).includes('node_modules') ? undefined : true
 	},
@@ -11,9 +10,10 @@ const config = {
 		adapter: adapter({
 			pages: 'docs',
 			assets: 'docs',
-			fallback: 'index.html'
+			prerender: {
+				default: true
+			}
 		}),
-
 		paths: {
 			base: '/MDOT-Guidehub'
 		}
